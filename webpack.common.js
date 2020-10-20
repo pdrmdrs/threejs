@@ -1,18 +1,12 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const TerserPlugin = require('terser-webpack-plugin')
 
 module.exports = {
-  mode: 'development',
-  devtool: 'inline-source-map',
-  devServer: {
-    contentBase: './public',
-  },
   entry: path.resolve(__dirname, 'src', 'index.js'),
   output: {
-    filename: 'js/main.js',
-    path: path.resolve(__dirname, 'public'),
+    filename: 'js/[name].[contenthash].js',
+    path: path.resolve(__dirname, 'dist'),
   },
   plugins: [
     new CleanWebpackPlugin(),
@@ -21,7 +15,9 @@ module.exports = {
     }),
   ],
   optimization: {
-    minimize: true,
-    minimizer: [new TerserPlugin()],
+    splitChunks: {
+      chunks: 'all',
+    },
+    runtimeChunk: 'single',
   },
 }

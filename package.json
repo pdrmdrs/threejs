@@ -13,11 +13,12 @@
     "terser-webpack-plugin": "5.0.0",
     "webpack": "5.1.3",
     "webpack-cli": "4.0.0",
-    "webpack-dev-server": "3.11.0"
+    "webpack-dev-server": "3.11.0",
+    "webpack-merge": "5.2.0"
   },
   "scripts": {
-    "build": "webpack --config webpack.config.js",
+    "build": "webpack --config webpack.prod.js",
     "watch": "yarn build -- --watch",
-    "start": "webpack serve"
+    "start": "webpack serve --config webpack.dev.js"
   }
 }
